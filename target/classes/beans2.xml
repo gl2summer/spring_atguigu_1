@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+
+	<bean id="beans2" class="com.hao.spring.Beans2">
+		<constructor-arg name="string">
+			<value><![CDATA[<Beans>]]></value>
+		</constructor-arg>
+		<constructor-arg name="integer" value="100"></constructor-arg>
+		<!-- <constructor-arg type="Integer" value="102"></constructor-arg> -->
+		<property name="ref">
+			<bean class="com.hao.spring.Ref">
+				<property name="name" value="ref111111"></property>
+			</bean>
+		</property>
+		<property name="ref.name" value="ref22222222"></property>
+		<property name="listInteger" ref="list1"></property>
+		<property name="mapInteger" ref="map1"></property>
+		<property name="properties">
+			<props>
+				<prop key="p1">root</prop>
+				<prop key="p2">1234</prop>
+			</props>
+		</property>
+	</bean>
+
+	<util:list id="list1">
+		<value>1001</value>
+		<value>1002</value>
+	</util:list>
+	<util:map id="map1">
+		<entry key="k1" value="111"></entry>
+		<entry key="k2" value="112"></entry>
+	</util:map>
+</beans>

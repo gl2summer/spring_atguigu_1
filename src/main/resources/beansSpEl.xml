@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="vip1" class="com.hao.spel.Vip">
+		<property name="cardNo" value="1234"></property>
+		<property name="stage" value="1"></property>
+	</bean>
+
+	<bean id="food1" class="com.hao.spel.Food">
+		<property name="name" value="#{'apple'}"></property>
+		<property name="price" value="100"></property>
+	</bean>
+
+	<bean id="customer1" class="com.hao.spel.Customer">
+		<property name="amount" value="#{T(com.hao.spel.Customer).factor *100}"></property>
+		<property name="name" value="#{'jerry'}"></property>
+		<property name="vip" value="#{vip1}"></property>
+		<property name="info" value="#{vip1.stage >= T(com.hao.spel.Vip).vipThreshold ? 'VIP':'no-VIP'}"></property>
+	</bean>
+
+	<bean id="shop1" class="com.hao.spel.Shop">
+		<property name="name" value="#{'shop12'}"></property>
+		<property name="customer" value="#{customer1}"></property>
+	</bean>
+</beans>

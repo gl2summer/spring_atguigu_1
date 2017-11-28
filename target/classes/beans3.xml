@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="beans3base" class="com.hao.spring.Beans3" p:integer="#{100+10+1}"
+		p:string="Beans3" abstract="true"></bean>
+
+	<bean id="beans31" parent="beans3base"></bean>
+
+	<bean id="beans3" parent="beans3base" depends-on="beans31">
+		<property name="string" value="this"></property>
+	</bean>
+</beans>

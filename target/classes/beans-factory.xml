@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 通过静态方法来配置bean，注意不是配置静态工厂方法实例，而是配置bean实例 -->
+	<bean id="prod1" class="com.hao.beans.factory.StaticFactory"
+		factory-method="getProduct">
+		<constructor-arg name="name" value="audi"></constructor-arg>
+	</bean>
+
+	<!-- 配置工厂的实例 -->
+	<bean id="prodFactory" class="com.hao.beans.factory.InstanceFactory"></bean>
+	<!-- 通过实例工厂方法来配置bean -->
+	<bean id="prod2" factory-bean="prodFactory" factory-method="getProduct">
+		<constructor-arg value="bmw"></constructor-arg>
+	</bean>
+</beans>

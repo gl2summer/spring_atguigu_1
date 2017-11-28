@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- ********************************************继承******************************************** -->
+	<!-- 抽象bean：由abstract指定，此bean只能被继承(某些属性不被继承，如abstract属性)，不能实例化 -->
+	<bean id="address" class="com.hao.spring.Address" abstract="true"></bean>
+
+	<bean id="address1" parent="address" p:city="Beijing" p:street="WuDaoKou"></bean>
+
+	<!-- bean配置的继承 : 使用parent属性 -->
+	<bean id="address2" parent="address" p:city="Shanghai" p:street="PuDong"></bean>
+
+
+
+	<!-- ********************************************依赖******************************************** -->
+	<bean id="car" class="com.hao.spring.Car" p:name="Q5" p:cord="Audi"
+		p:price="500000"></bean>
+	<!-- bean依赖：由depends-on属性指定 -->
+	<bean id="person" class="com.hao.spring.Person" p:name="Tom"
+		p:address-ref="address1" p:car-ref="car" depends-on="car"></bean>
+
+
+	<!-- ********************************************作用域******************************************** -->
+	<!-- 单例bean：由singleton指定，此类bean在配置文件被加载时（即容器被初始化时）被创建;;;;原型bean： 由prototype指定，此类bean在容器初始化时不创建，而在被请求实例化时才创建 -->
+	<bean id="address3" class="com.hao.spring.Address" p:city="Beijing"
+		p:street="WuDaoKou" scope="singleton"></bean>
+	<bean id="address4" class="com.hao.spring.Address" p:city="Beijing"
+		p:street="WuDaoKou" scope="prototype"></bean>
+
+</beans>
